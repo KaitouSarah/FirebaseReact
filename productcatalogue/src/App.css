@@ -20,7 +20,7 @@ label {
   color: black; 
   font-size: large;
 }
-.Add-Button {
+.add-btn {
   background-color: rgb(10,65,50); /*Green*/
   border: none;
   color: white;
@@ -47,7 +47,7 @@ label {
   width: 400px;
 }
 
-.Buttons {
+.button {
   align-items: center;
   display: flex;
   justify-content: center;
