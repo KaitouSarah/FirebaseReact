@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   render() {
-    const cardStyles = {
+    const cardStyle = {
       width: 'auto',
       height: 'auto',
       backgroundColor: 'white',
@@ -51,11 +51,11 @@ class App extends React.Component {
       borderStyle: 'outset', 
       borderLeft: '50px solid black', 
       borderRadius: '20px'
-
     }
+
     return( 
       <div>
-        <Card style={cardStyles}>
+        <Card style={cardStyle}>
           <div className="button">
             <Link to="/create">
               <button class="add-btn">Add product</button>
