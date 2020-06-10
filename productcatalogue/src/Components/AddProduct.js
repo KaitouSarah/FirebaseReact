@@ -53,6 +53,11 @@ class AddProduct extends React.Component{
                     <label for="name">Product name: </label>
                     <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} placeholder="Please enter name"></input>
                 </div>
+                <div>
+                    <div class="form-group"></div>
+                    <label for="description">Product description: </label>
+                    <textarea class="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textarea>
+                </div>
                 </Card>
             </div>
         )
