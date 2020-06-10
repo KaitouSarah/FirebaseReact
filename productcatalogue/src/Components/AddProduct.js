@@ -22,10 +22,19 @@ class AddProduct extends React.Component{
         this.setState(state);
     }
 
+    handleChange = (e) => {
+        if (e.target.files[0]) {
+            this.setState({
+                image: e.target.files[0]
+            }) ;
+        }
+        console.log(e.target.files[0]);
+    }
+
     render() {
         const {name, description} = this.state;
         const cardStyle = {
-            width: 'auto',
+            width: '40rem',
             height: 'auto',
             backgroundColor: 'white',
             margin: 'auto', 
@@ -43,21 +52,24 @@ class AddProduct extends React.Component{
         return (
             <div>
                 <Card style={cardStyle}>
-                <div className="button">
-                    <Link to="/">
-                    <button class="edit-btn">Show all products</button>
-                    </Link>
-                </div>
-                <div>
-                    <div class="form-group"></div>
-                    <label for="name">Product name: </label>
-                    <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} placeholder="Please enter name"></input>
-                </div>
-                <div>
-                    <div class="form-group"></div>
-                    <label for="description">Product description: </label>
-                    <textarea class="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textarea>
-                </div>
+                    <div className="button">
+                        <Link to="/">
+                        <button class="edit-btn">Show all products</button>
+                        </Link>
+                    </div>
+                    <div>
+                        <div class="form-group"></div>
+                        <label for="name">Product name: </label>
+                        <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} placeholder="Please enter name"></input>
+                    </div>
+                    <div>
+                        <div class="form-group"></div>
+                        <label for="description">Product description: </label>
+                        <textarea class="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textarea>
+                    </div>
+                    <div className="upload-data">
+                        <input type="file" onChange={this.handleChange}/>
+                    </div>
                 </Card>
             </div>
         )
