@@ -8,9 +8,22 @@ import {Link} from 'react-router-dom';
 class AddProduct extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            name: '',
+            description: '',
+            url: '',
+            image: null
+        }
+    }
+
+    onChange = (e) => {
+        const state = this.state;
+        state[e.target.name] = e.target.value;
+        this.setState(state);
     }
 
     render() {
+        const {name, description} = this.state;
         const cardStyle = {
             width: 'auto',
             height: 'auto',
@@ -34,6 +47,11 @@ class AddProduct extends React.Component{
                     <Link to="/">
                     <button class="edit-btn">Show all products</button>
                     </Link>
+                </div>
+                <div>
+                    <div class="form-group"></div>
+                    <label for="name">Product name: </label>
+                    <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} placeholder="Please enter name"></input>
                 </div>
                 </Card>
             </div>
