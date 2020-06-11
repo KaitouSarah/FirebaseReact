@@ -54,7 +54,7 @@ label {
   margin-bottom: 10px;
 }
 
-.upload-data {
+.image-preview {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -74,7 +74,9 @@ label {
   overflow: hidden;
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .file-btn {
