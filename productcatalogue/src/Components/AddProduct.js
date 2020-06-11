@@ -31,6 +31,16 @@ class AddProduct extends React.Component{
         console.log(e.target.files[0]);
     }
 
+    handleUpload = () => {
+        const {image} = this.state;
+        const uploadTask = firebase.storage().ref(`images/${image.name}`).put(this.state.image);
+        uploadTask.on('state_changed', 
+            (snapshot) => {console.log('snapshot')},
+            (error) => {console.log(error);},
+            () => {firebase.storage().ref('images').child(image.name).getDownloadURL().then(url => {this.setState({url})})}
+        )
+    }
+
     render() {
         const {name, description} = this.state;
         const cardStyle = {
@@ -69,6 +79,11 @@ class AddProduct extends React.Component{
                     </div>
                     <div className="upload-data">
                         <input type="file" onChange={this.handleChange}/>
+                        <img src={this.state.url} style={{maxWidth: 150, maxHeight: 150}}></img>
+                    </div>
+                    <div className="button">
+                        <button className="submit-btn" onClick={this.handleUpload}>Upload image *</button>
+                        <button className="submit-btn" onClick={this.handleUpload}>Save</button>
                     </div>
                 </Card>
             </div>
