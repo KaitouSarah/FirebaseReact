@@ -28,7 +28,7 @@ label {
   text-align: center;
   font-size: 30px;
 }
-.Submit-Button {
+.submit-btn {
   background-color: black;
   border: none;
   color: white;
@@ -59,6 +59,7 @@ label {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .panel-heading {
