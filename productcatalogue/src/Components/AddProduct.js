@@ -85,6 +85,9 @@ class AddProduct extends React.Component{
                         <button className="submit-btn" onClick={this.handleUpload}>Upload image *</button>
                         <button className="submit-btn" onClick={this.handleUpload}>Save</button>
                     </div>
+                    <div className="upload-before-save">
+                        <span>*You must upload the image before you can save</span>
+                    </div>
                 </Card>
             </div>
         )

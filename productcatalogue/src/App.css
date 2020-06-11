@@ -111,3 +111,9 @@ label {
 .btn {
   margin-bottom: 10px;
 }
+
+.upload-before-save {
+  color: red;
+  display: flex;
+  justify-content: flex-end;
+}
