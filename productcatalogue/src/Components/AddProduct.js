@@ -8,11 +8,13 @@ import {Link} from 'react-router-dom';
 class AddProduct extends React.Component{
     constructor(props) {
         super(props);
+        this.ref = firebase.firestore().collection('Products');
         this.state = {
             name: '',
             description: '',
             url: '',
-            image: null
+            image: null,
+            imageUploaded: false
         }
     }
 
@@ -31,14 +33,38 @@ class AddProduct extends React.Component{
         console.log(e.target.files[0]);
     }
 
-    handleUpload = () => {
+    handleImageUpload = () => {
         const {image} = this.state;
         const uploadTask = firebase.storage().ref(`images/${image.name}`).put(this.state.image);
         uploadTask.on('state_changed', 
             (snapshot) => {console.log('snapshot')},
             (error) => {console.log(error);},
-            () => {firebase.storage().ref('images').child(image.name).getDownloadURL().then(url => {this.setState({url})})}
+            () => {firebase.storage().ref('images').child(image.name).getDownloadURL().then(url => {this.setState({
+                url: url,
+                imageUploaded: true
+            })})}
         )
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const {name, description} = this.state;
+        this.ref.add({
+            name, 
+            description, 
+            url: this.state.url
+        }).then((docRef) => {
+            this.setState({
+                name: '',
+                description: '',
+                url: '',
+                imageUploaded: false
+            });
+            this.props.history.push("/")
+        })
+        .catch((error) => {
+            console.error('Error adding new entry: ', error)
+        })
     }
 
     render() {
@@ -64,26 +90,32 @@ class AddProduct extends React.Component{
                 <Card style={cardStyle}>
                     <div className="button">
                         <Link to="/">
-                        <button class="edit-btn">Show all products</button>
+                        <button className="edit-btn">Show all products</button>
                         </Link>
                     </div>
                     <div>
-                        <div class="form-group"></div>
-                        <label for="name">Product name: </label>
-                        <input type="text" class="form-control" name="name" value={name} onChange={this.onChange} placeholder="Please enter name"></input>
+                        <div>
+                            <div className="form-group"></div>
+                            <label for="name">Product name: </label>
+                            <input type="text" className="form-control" name="name" value={name} onChange={this.onChange} placeholder="Please enter name"></input>
+                        </div>
+                        <div>
+                            <div className="form-group"></div>
+                            <label for="description">Product description: </label>
+                            <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textarea>
+                        </div>
                     </div>
-                    <div>
-                        <div class="form-group"></div>
-                        <label for="description">Product description: </label>
-                        <textarea class="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textarea>
-                    </div>
-                    <div className="upload-data">
+                    <div className="upload-btn-wrapper">
+                        <button className="file-btn">Choose a file</button>
                         <input type="file" onChange={this.handleChange}/>
+                        <span>{this.state.image !== null && this.state.image.name}</span>
+                    </div>
+                    <div className="image-preview">
                         <img src={this.state.url} style={{maxWidth: 150, maxHeight: 150}}></img>
                     </div>
                     <div className="button">
-                        <button className="submit-btn" onClick={this.handleUpload}>Upload image *</button>
-                        <button className="submit-btn" onClick={this.handleUpload}>Save</button>
+                        <button className="submit-btn" onClick={this.handleImageUpload}>Upload image *</button>
+                        <button className="submit-btn" disabled={!this.state.imageUploaded} onClick={this.onSubmit}>Save</button>
                     </div>
                     <div className="upload-before-save">
                         <span>*You must upload the image before you can save</span>
