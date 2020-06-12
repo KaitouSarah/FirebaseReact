@@ -15,7 +15,7 @@ class ShowProduct extends React.Component{
     }
 
     componentDidMount() {
-        const ref = firebase.firestore.collection('Products').doc(this.props.match.params.id);
+        const ref = firebase.firestore().collection('Products').doc(this.props.match.params.id);
 
         ref.get().then((doc) => {
             if (doc.exists) {
@@ -33,10 +33,16 @@ class ShowProduct extends React.Component{
     delete(id) {
         var desertRef = firebase.storage().refFromURL(this.state.product.url);
         firebase.firestore().collection('Products').doc(id).delete().then(() => {
+            console.log("Document successfully deleted");
             this.props.history.push("/");
         }).catch((error) => {
-            console.error("Error when trying to delete document");
-        })
+            console.error("Error when trying to delete document: ", error);
+        });
+        desertRef.delete().then(function() {
+            console.log(`file deleted`);
+        }).catch(function(error) {
+            console.log("Error while deleting file")
+        });
     }
 
     render() {
