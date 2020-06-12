@@ -81,16 +81,15 @@ class AddProduct extends React.Component{
             paddingLeft: '20px', 
             paddingRight: '20px', 
             borderStyle: 'outset', 
-            borderLeft: '50px solid black', 
-            borderRadius: '20px'
+            borderLeft: '50px solid black'
         }
 
         return (
             <div>
                 <Card style={cardStyle}>
-                    <div className="button">
+                    <div className="buttons">
                         <Link to="/">
-                        <button className="edit-btn">Show all products</button>
+                            <button className="edit-btn">Show all products</button>
                         </Link>
                     </div>
                     <div>
@@ -111,7 +110,7 @@ class AddProduct extends React.Component{
                         <span>{this.state.image !== null && this.state.image.name}</span>
                     </div>
                     <div className="image-preview">
-                        <img src={this.state.url} style={{maxWidth: 150, maxHeight: 150}}></img>
+                        <img src={this.state.url} style={{maxWidth: 200, maxHeight: 200}}></img>
                     </div>
                     <div className="buttons">
                         <button className="submit-btn" onClick={this.handleImageUpload}>Upload image *</button>
