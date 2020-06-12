@@ -14,6 +14,31 @@ class ShowProduct extends React.Component{
         }
     }
 
+    componentDidMount() {
+        const ref = firebase.firestore.collection('Products').doc(this.props.match.params.id);
+
+        ref.get().then((doc) => {
+            if (doc.exists) {
+                this.setState({
+                    product: doc.data(),
+                    key: doc.id,
+                    isLoading: false
+                });
+            } else {
+                console.log("Could not find document");
+            }
+        })
+    }
+
+    delete(id) {
+        var desertRef = firebase.storage().refFromURL(this.state.product.url);
+        firebase.firestore().collection('Products').doc(id).delete().then(() => {
+            this.props.history.push("/");
+        }).catch((error) => {
+            console.error("Error when trying to delete document");
+        })
+    }
+
     render() {
         const cardStyle = {
             width: '40rem',
