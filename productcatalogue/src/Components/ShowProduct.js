@@ -8,13 +8,52 @@ import {Link} from 'react-router-dom';
 class ShowProduct extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            product: [],
+            key: ''
+        }
     }
 
     render() {
+        const cardStyle = {
+            width: '40rem',
+            height: 'auto',
+            backgroundColor: 'white',
+            margin: 'auto', 
+            display: 'block', 
+            marginTop: '60px', 
+            opacity: 0.8, 
+            paddingTop: '10px', 
+            paddingLeft: '20px', 
+            paddingRight: '20px', 
+            borderStyle: 'outset', 
+            borderLeft: '50px solid black'
+        }
+
         return (
             <div>
-                <Card style={}>
-                    
+                <Card style={cardStyle}>
+                    <div className="buttons">
+                        <Link to="/">
+                            <button className="edit-btn">Show all products</button>
+                        </Link>
+                    </div>
+                    <div className="image-preview">
+                        <img src={this.state.url} style={{maxWidth: 150, maxHeight: 150}}></img>
+                    </div>
+                    <div className="container">
+                        <div className="panel panel-default">
+                            <h3 className="panel-title">{this.state.product.name}</h3>
+                        </div>
+                        <div className="panel-body">
+                            <dl>
+                                <dt>Description:</dt>
+                                <dd>{this.state.product.description}</dd>
+                            </dl>
+                            <Link to={`/edit/${this.state.key}`} className="btn btn-success">Edit</Link>
+                            <button onClick={this.delete.bind(this, this.state.key)} className="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
                 </Card>
             </div>
         )
