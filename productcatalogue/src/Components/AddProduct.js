@@ -113,7 +113,7 @@ class AddProduct extends React.Component{
                     <div className="image-preview">
                         <img src={this.state.url} style={{maxWidth: 150, maxHeight: 150}}></img>
                     </div>
-                    <div className="button">
+                    <div className="buttons">
                         <button className="submit-btn" onClick={this.handleImageUpload}>Upload image *</button>
                         <button className="submit-btn" disabled={!this.state.imageUploaded} onClick={this.onSubmit}>Save</button>
                     </div>
