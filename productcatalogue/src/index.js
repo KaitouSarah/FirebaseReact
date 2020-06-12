@@ -11,8 +11,8 @@ import {BrowserRouter, Route} from 'react-router-dom';
 ReactDOM.render(<BrowserRouter>
 <Route exact path="/" component = {App}></Route>
 <Route path="/create" component = {AddProduct}></Route>
-<Route path="/show/:id" component = {EditProduct}></Route>
-<Route path="/edit/:id" component = {ShowProduct}></Route>
+<Route path="/show/:id" component = {ShowProduct}></Route>
+<Route path="/edit/:id" component = {EditProduct}></Route>
 </BrowserRouter>, document.getElementById('root')
 );
 
