@@ -56,20 +56,20 @@ class App extends React.Component {
     return( 
       <div>
         <Card style={cardStyle}>
-          <div className="button">
+          <div className="buttons">
             <Link to="/create">
-              <button class="add-btn">Add product</button>
+              <button className="add-btn">Add product</button>
             </Link>
           </div>
 
-          <div class="container">
-            <div class="panel panel-heading">
-              <h3 class="panel heading">Product Details</h3>
+          <div className="container">
+            <div className="panel panel-heading">
+              <h3 className="panel heading">Product Details</h3>
             </div>
           </div>
 
-          <div class="panel-body">
-            <table class="table table-stripe">
+          <div className="panel-body">
+            <table className="table table-stripe">
               <thead>
                 <tr>
                   <th>Product name</th>
