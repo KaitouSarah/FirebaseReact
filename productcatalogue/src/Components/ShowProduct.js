@@ -16,7 +16,6 @@ class ShowProduct extends React.Component{
 
     componentDidMount() {
         const ref = firebase.firestore().collection('Products').doc(this.props.match.params.id);
-
         ref.get().then((doc) => {
             if (doc.exists) {
                 this.setState({
@@ -32,6 +31,8 @@ class ShowProduct extends React.Component{
 
     delete(id) {
         var desertRef = firebase.storage().refFromURL(this.state.product.url);
+        
+        console.log("URL: ", this.state.product);
         firebase.firestore().collection('Products').doc(id).delete().then(() => {
             console.log("Document successfully deleted");
             this.props.history.push("/");
@@ -70,7 +71,7 @@ class ShowProduct extends React.Component{
                         </Link>
                     </div>
                     <div className="image-preview">
-                        <img src={this.state.url} style={{maxWidth: 150, maxHeight: 150}}></img>
+                        <img src={this.state.product.url} style={{maxWidth: 350, maxHeight: 250}}></img>
                     </div>
                     <div className="container">
                         <div className="panel panel-default">
