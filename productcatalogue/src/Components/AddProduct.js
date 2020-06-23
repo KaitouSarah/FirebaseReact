@@ -101,7 +101,7 @@ class AddProduct extends React.Component{
                         <div>
                             <div className="form-group"></div>
                             <label for="description">Product description: </label>
-                            <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textarea>
+                            <textArea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textArea>
                         </div>
                     </div>
                     <div className="upload-btn-wrapper">
