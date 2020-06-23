@@ -18,6 +18,23 @@ class EditProduct extends React.Component{
         }
     }
 
+    componentDidMount() {
+        const ref = firebase.firestore().collection('Products').doc(this.props.match.params.id);
+        ref.get().then((doc) => {
+            if (doc.exists) {
+                const document = doc.data();
+                this.setState({
+                    key: doc.id,
+                    name: document.name,
+                    description: document.description,
+                    url: document.url
+                });
+            } else {
+                console.log("Could not find document");
+            }
+        })
+    }
+
     render() {
         const cardStyle = {
             width: '40rem',
