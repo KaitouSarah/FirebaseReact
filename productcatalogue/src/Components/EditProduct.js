@@ -59,11 +59,19 @@ class EditProduct extends React.Component{
                         <button className="edit-btn">Show all products</button>
                     </Link>
                 </div>
+
                 <div className="image-preview">
                     <img src={} style={{maxWidth: 350, maxHeight: 250}}></img>
                 </div>
+
+                <div className="upload-btn-wrapper">
+                    <button className="file-btn">Choose a file</button>
+                    <input type="file" onChange={this.handleChange}/>
+                    <span>{this.state.image !== null && this.state.image.name}</span>
+                </div>
             </Card>
-        </div>)
+        </div>
+        )
     }
 }
 
