@@ -18,6 +18,36 @@ class EditProduct extends React.Component{
         }
     }
 
+    render() {
+        const cardStyle = {
+            width: '40rem',
+            height: 'auto',
+            backgroundColor: 'white',
+            margin: 'auto', 
+            display: 'block', 
+            marginTop: '60px', 
+            opacity: 0.8, 
+            paddingTop: '10px', 
+            paddingLeft: '20px', 
+            paddingRight: '20px', 
+            borderStyle: 'outset', 
+            borderLeft: '50px solid black'
+        }
+
+        return (
+        <div>
+            <Card style={cardStyle}>
+                <div className="buttons">
+                    <Link to="/">
+                        <button className="edit-btn">Show all products</button>
+                    </Link>
+                </div>
+                <div className="image-preview">
+                    <img src={} style={{maxWidth: 350, maxHeight: 250}}></img>
+                </div>
+            </Card>
+        </div>)
+    }
 }
 
 export default EditProduct;
