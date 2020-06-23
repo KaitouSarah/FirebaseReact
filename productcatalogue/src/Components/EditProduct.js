@@ -70,7 +70,7 @@ class EditProduct extends React.Component{
                 </div>
 
                 <div className="image-preview">
-                    <img src={} style={{maxWidth: 350, maxHeight: 250}}></img>
+                    <img src={this.state.url} style={{maxWidth: 350, maxHeight: 250}}></img>
                 </div>
 
                 <div className="upload-btn-wrapper">
@@ -81,11 +81,28 @@ class EditProduct extends React.Component{
 
                 <div className="buttons">
                     <button className="submit-btn" onClick={this.handleImageUpload}>Upload image *</button>
-                    <button className="submit-btn" disabled={!this.state.imageUploaded} onClick={this.onSubmit}>Save</button>
                 </div>
-                <div className="upload-before-save">
-                    <span>*You must upload the image before you can save</span>
-                </div>
+
+                <div className="container">
+                        <div className="panel panel-default">
+                            <h3 className="panel-title">{this.state.product.name}</h3>
+                        </div>
+                        <div className="panel-body">
+                            <form onSubmit={this.onSubmit}>
+                                <div>
+                                    <div className="form-group"></div>
+                                    <label for="name">Product name: </label>
+                                    <input type="text" className="form-control" name="name" value={this.state.name} onChange={this.onChange} placeholder="Please enter name"></input>
+                                </div>
+                                <div>
+                                    <div className="form-group"></div>
+                                    <label for="description">Product description: </label>
+                                    <textArea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{this.state.description}</textArea>
+                                </div>
+                                <button typse="submit" className="btn btn-success">Submit</button>
+                            </form>
+                        </div>
+                    </div>
             </Card>
         </div>
         )
