@@ -35,6 +35,15 @@ class EditProduct extends React.Component{
         })
     }
 
+    handleChange = (e) => {
+        if (e.target.files[0]) {
+            this.setState({
+                image: e.target.files[0]
+            }) ;
+        }
+        console.log(e.target.files[0]);
+    }
+
     render() {
         const cardStyle = {
             width: '40rem',
@@ -68,6 +77,14 @@ class EditProduct extends React.Component{
                     <button className="file-btn">Choose a file</button>
                     <input type="file" onChange={this.handleChange}/>
                     <span>{this.state.image !== null && this.state.image.name}</span>
+                </div>
+
+                <div className="buttons">
+                    <button className="submit-btn" onClick={this.handleImageUpload}>Upload image *</button>
+                    <button className="submit-btn" disabled={!this.state.imageUploaded} onClick={this.onSubmit}>Save</button>
+                </div>
+                <div className="upload-before-save">
+                    <span>*You must upload the image before you can save</span>
                 </div>
             </Card>
         </div>
