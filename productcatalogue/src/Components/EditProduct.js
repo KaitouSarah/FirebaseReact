@@ -141,7 +141,7 @@ class EditProduct extends React.Component{
                                     <div>
                                         <div className="form-group"></div>
                                         <label for="description">Product description: </label>
-                                        <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{this.state.description}</textarea>
+                                        <textarea className="form-control" name="description" value={this.state.description} onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3"></textarea>
                                     </div>
                                     <button typse="submit" className="btn btn-success">Submit</button>
                                 </form>
