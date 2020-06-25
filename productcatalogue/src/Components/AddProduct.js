@@ -101,7 +101,7 @@ class AddProduct extends React.Component{
                         <div>
                             <div className="form-group"></div>
                             <label for="description">Product description: </label>
-                            <textArea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textArea>
+                            <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{description}</textarea>
                         </div>
                     </div>
                     <div className="upload-btn-wrapper">
@@ -113,7 +113,7 @@ class AddProduct extends React.Component{
                         <img src={this.state.url} style={{maxWidth: 200, maxHeight: 200}}></img>
                     </div>
                     <div className="buttons">
-                        <button className="submit-btn" onClick={this.handleImageUpload}>Upload image *</button>
+                        <button className="submit-btn" disabled ={!this.state.image} onClick={this.handleImageUpload}>Upload image *</button>
                         <button className="submit-btn" disabled={!this.state.imageUploaded} onClick={this.onSubmit}>Save</button>
                     </div>
                     <div className="upload-before-save">
