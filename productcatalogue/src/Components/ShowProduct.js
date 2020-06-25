@@ -46,6 +46,12 @@ class ShowProduct extends React.Component{
         });
     }
 
+    onChange = (e) => {
+        const state = this.state;
+        state[e.target.name] = e.target.value;
+        this.setState({document: state});
+    }
+
     render() {
         const cardStyle = {
             width: '40rem',
