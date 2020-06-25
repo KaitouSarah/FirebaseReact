@@ -44,6 +44,26 @@ class EditProduct extends React.Component{
         console.log(e.target.files[0]);
     }
 
+    handleImageUpload = () => {
+        const {image, url} = this.state;
+        var desertRef= firebase.storage().refFromURL(url)
+        const uploadTask = firebase.storage().ref(`images/${image.name}`).put(this.state.image);
+        uploadTask.on('state_changed', 
+            (snapshot) => {console.log('snapshot')},
+            (error) => {console.log(error);},
+            () => {firebase.storage().ref('images').child(image.name).getDownloadURL().then(url => {this.setState({
+                url: url,
+                imageUploaded: true
+            })})}
+        )
+
+        desertRef.delete().then(function() {
+            console.log(`file deleted`);
+        }).catch(function(error) {
+            console.log("Error while deleting file")
+        });
+    }
+
     render() {
         const cardStyle = {
             width: '40rem',
