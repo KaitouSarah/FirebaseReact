@@ -63,6 +63,29 @@ class EditProduct extends React.Component{
             console.log("Error while deleting file")
         });
     }
+    
+    onSubmit = (e) => {
+        e.preventDefault();
+        const {name, description, url} = this.state;
+        const updateRef = firebase.firestore().collection('Products').doc(this.state.key)
+        updateRef.set({
+            name, 
+            description, 
+            url
+        }).then((docRef) => {
+            this.setState({
+                key: '',
+                name: '',
+                description: '',
+                url: '',
+                imageUploaded: false
+            });
+            this.props.history.push("/show/" + this.props.match.params.id)
+        })
+        .catch((error) => {
+            console.error('Error editing entry: ', error)
+        })
+    }
 
     render() {
         const cardStyle = {
@@ -102,25 +125,27 @@ class EditProduct extends React.Component{
                 <div className="buttons">
                     <button className="submit-btn" onClick={this.handleImageUpload}>Upload image *</button>
                 </div>
+                <div className="upload-before-save">
+                    <span>*You must upload the image before you save</span>
+                </div>
 
                 <div className="container">
                         <div className="panel panel-default">
-                            <h3 className="panel-title">{this.state.product.name}</h3>
-                        </div>
-                        <div className="panel-body">
-                            <form onSubmit={this.onSubmit}>
-                                <div>
-                                    <div className="form-group"></div>
-                                    <label for="name">Product name: </label>
-                                    <input type="text" className="form-control" name="name" value={this.state.name} onChange={this.onChange} placeholder="Please enter name"></input>
-                                </div>
-                                <div>
-                                    <div className="form-group"></div>
-                                    <label for="description">Product description: </label>
-                                    <textArea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{this.state.description}</textArea>
-                                </div>
-                                <button typse="submit" className="btn btn-success">Submit</button>
-                            </form>
+                            <div className="panel-body">
+                                <form onSubmit={this.onSubmit}>
+                                    <div>
+                                        <div className="form-group"></div>
+                                        <label for="name">Product name: </label>
+                                        <input type="text" className="form-control" name="name" value={this.state.name} onChange={this.onChange} placeholder="Please enter name"></input>
+                                    </div>
+                                    <div>
+                                        <div className="form-group"></div>
+                                        <label for="description">Product description: </label>
+                                        <textarea className="form-control" name="description" onChange={this.onChange} placeholder="Please enter description" cols="80" rows="3">{this.state.description}</textarea>
+                                    </div>
+                                    <button typse="submit" className="btn btn-success">Submit</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
             </Card>
